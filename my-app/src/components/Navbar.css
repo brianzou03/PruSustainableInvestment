@@ -1,0 +1,33 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #304a78;
+    color: white;
+  }
+  
+  .navbar .logo img {
+    height: 80px; /* Adjust based on your logo size */
+  }
+  
+  .nav-links {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .nav-links li {
+    margin-left: 1.5rem;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .nav-links a:hover {
+    text-decoration: underline;
+  }
+  

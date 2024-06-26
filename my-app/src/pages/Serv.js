@@ -1,13 +1,26 @@
 import React, { useState } from 'react';
 import { fetchStockData } from '../utils/database';
+import './Serv.css'; // Ensure you have appropriate styling
 
 const Serv = () => {
   const [query, setQuery] = useState('');
   const [stockData, setStockData] = useState(null);
+  const [error, setError] = useState('');
 
   const handleSearch = async () => {
-    const data = await fetchStockData(query);
-    setStockData(data);
+    try {
+      const data = await fetchStockData(query);
+      if (data.length === 0) {
+        setError('No data found for the given ticker');
+        setStockData(null);
+      } else {
+        setStockData(data);
+        setError('');
+      }
+    } catch (err) {
+      setError('Error fetching stock data');
+      setStockData(null);
+    }
   };
 
   return (
@@ -19,6 +32,7 @@ const Serv = () => {
         placeholder="Enter stock ticker" 
       />
       <button onClick={handleSearch}>Search</button>
+      {error && <p>{error}</p>}
       {stockData && (
         <table>
           <thead>

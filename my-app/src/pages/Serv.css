@@ -1,0 +1,46 @@
+.serv {
+    padding: 2rem;
+  }
+  
+  .serv input[type="text"] {
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+  }
+  
+  .serv button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #304a78;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .serv button:hover {
+    background-color: #253c65;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 1rem;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+  }
+  
+  .serv p {
+    color: red;
+  }
+  

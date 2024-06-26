@@ -1,7 +1,7 @@
 # PruSustainableInvestment
 Hackathon project focusing on tracking investments in order to suggest more environmentally friendly alternatives, and to align with a more sustainable company goal.
 
-### How to run
+### Installations
 ```
 npm install react-router-dom
 npm install sqlite3
@@ -10,12 +10,22 @@ npm install chart.js
 cd backend
 npm init -y
 npm install express sqlite3 cors
+```
 
+### How to run
+
+#### 1st run the backend (in console 1)
+```
+cd backend
 node server.js
+```
 
-cd my-app
+#### 2nd run the frontend (in console 2)
+```
+cd src
 npm start
 ```
+
 
 ### Technology Stack
 * Node

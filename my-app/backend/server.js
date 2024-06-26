@@ -8,7 +8,7 @@ const port = 5001;
 app.use(cors());
 
 // Define the path to the database
-const dbPath = path.resolve(__dirname, 'stockData.db');
+const dbPath = path.resolve(__dirname, '../stockData.db');
 
 // Create a connection to the database
 const db = new sqlite3.Database(dbPath, (err) => {
