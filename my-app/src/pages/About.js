@@ -8,20 +8,24 @@ const About = () => {
       </p>
       <div className="team">
         <div className="team-member">
-          <img src="https://via.placeholder.com/150" alt="Team Member" />
+          <img src="/images/BrianPicture.png" alt="Team Member 1" />
           <p>Member 1 Bio</p>
         </div>
         <div className="team-member">
-          <img src="https://via.placeholder.com/150" alt="Team Member" />
+          <img src="/images/SydneyPicture.jpg" alt="Team Member 2" />
           <p>Member 2 Bio</p>
         </div>
         <div className="team-member">
-          <img src="https://via.placeholder.com/150" alt="Team Member" />
+          <img src="/images/MattPicture.jpg" alt="Team Member 3" />
           <p>Member 3 Bio</p>
         </div>
         <div className="team-member">
-          <img src="https://via.placeholder.com/150" alt="Team Member" />
+          <img src="/images/RiyaPicture.jpg" alt="Team Member 4" />
           <p>Member 4 Bio</p>
+        </div>
+        <div className="team-member">
+          <img src="/images/GuyllianPicture.png" alt="Team Member 5" />
+          <p>Member 5 Bio</p>
         </div>
       </div>
     </div>
