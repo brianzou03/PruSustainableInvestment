@@ -22,9 +22,12 @@ node server.js
 
 #### 2nd run the frontend (in console 2)
 ```
-cd src
+cd my-app
 npm start
 ```
+
+#### Then visit:
+```http://localhost:3000/```
 
 
 ### Technology Stack

@@ -19,10 +19,21 @@ const db = new sqlite3.Database(dbPath, (err) => {
   }
 });
 
-// API endpoint to fetch stock data
+// API endpoint to fetch all stock data
+app.get('/api/stocks', (req, res) => {
+  db.all('SELECT * FROM stocks', [], (err, rows) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.json({ data: rows });
+  });
+});
+
+// API endpoint to fetch stock data by ticker
 app.get('/api/stocks/:ticker', (req, res) => {
-  const ticker = req.params.ticker;
-  db.all('SELECT * FROM stocks WHERE ticker = ?', [ticker], (err, rows) => {
+  const ticker = req.params.ticker.toUpperCase();
+  db.all('SELECT * FROM stocks WHERE UPPER(ticker) = ?', [ticker], (err, rows) => {
     if (err) {
       res.status(500).json({ error: err.message });
       return;
