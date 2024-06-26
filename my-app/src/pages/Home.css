@@ -1,7 +1,13 @@
 .home {
     display: flex;
-    height: 100vh; /* Full height of the viewport */
+    flex-direction: column;
     margin: 0; /* Remove any default margins */
+    padding: 0; /* Remove any default padding */
+  }
+  
+  .home-top {
+    display: flex;
+    height: 50vh; /* Adjust the height as needed */
   }
   
   .home-left, .home-right {
@@ -23,11 +29,46 @@
   
   .home-right {
     padding: 2rem;
+    background-color: #f9f9f9;
   }
   
   .home-right p {
-    font-size: 1.2rem;
-    line-height: 1.5;
-    max-width: 90%; /* Ensure the text doesn't take up too much space */
+    font-size: 5rem; /* Increase the font size */
+    line-height: 3; /* Adjust line height for readability */
+    color: #333;
+  }
+  
+  .home-bottom {
+    padding: 2rem;
+    background-color: #f9f9f9;
+  }
+  
+  .home-bottom h2,
+  .home-bottom h3,
+  .home-bottom h4,
+  .home-bottom p {
+    margin: 0.5rem 0;
+  }
+  
+  .home-bottom h2 {
+    color: #304a78;
+    margin-bottom: 1rem; /* Add spacing below */
+  }
+  
+  .home-bottom .section-title {
+    color: #304a78;
+    font-weight: bold; /* Bold text */
+    margin-top: 2rem; /* Add spacing above */
+  }
+  
+  .home-bottom .section-subtitle {
+    color: #304a78;
+  }
+  
+  .home-bottom .section-content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+    margin-top: 1rem; /* Add spacing above */
   }
   

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { fetchAllStockData, fetchStockData } from '../utils/database';
-import StockDetails from './StockDetails';
 import './Serv.css';
 
 const Serv = () => {
@@ -27,7 +26,6 @@ const Serv = () => {
       } else {
         setHighlightedTicker(query.toUpperCase());
         setSelectedStock(data[0]);
-        // Fetch alternative stocks (for simplicity, just showing the first three from the list)
         const altStocks = stockData.filter(stock => stock.ticker !== data[0].ticker).slice(0, 3);
         setAlternativeStocks(altStocks);
       }
@@ -63,8 +61,7 @@ const Serv = () => {
                 <th>Ticker</th>
                 <th>Industry</th>
                 <th>Price</th>
-                <th>Trend</th>
-                <th>Ratings</th>
+                <th>Rating</th>
               </tr>
             </thead>
             <tbody>
@@ -78,15 +75,28 @@ const Serv = () => {
                   <td>{stock.ticker}</td>
                   <td>{stock.industry}</td>
                   <td>{stock.price}</td>
-                  <td>{stock.trend}</td>
-                  <td>{stock.ratings}</td>
+                  <td>{stock.rating}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
         {selectedStock && (
-          <StockDetails stock={selectedStock} alternativeStocks={alternativeStocks} />
+          <div className="stock-details">
+            <h2>{selectedStock.name} ({selectedStock.ticker})</h2>
+            <p><strong>Industry:</strong> {selectedStock.industry}</p>
+            <p><strong>Price:</strong> {selectedStock.price}</p>
+            <p><strong>Rating:</strong> {selectedStock.rating}</p>
+            <div className="placeholder-graph">[Graph Placeholder]</div>
+            <h3>Alternative Stocks</h3>
+            <ul>
+              {alternativeStocks.map((stock, index) => (
+                <li key={index}>
+                  {stock.name} ({stock.ticker}) - {stock.rating}
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </div>
     </div>

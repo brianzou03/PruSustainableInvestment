@@ -1,28 +1,23 @@
+const API_URL = 'http://localhost:5001/api/stocks';
+
 export const fetchAllStockData = async () => {
-    try {
-      const response = await fetch('http://localhost:5001/api/stocks');
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      return data.data;
-    } catch (error) {
-      console.error("Error fetching all stock data:", error);
-      throw error;
-    }
-  };
-  
-  export const fetchStockData = async (ticker) => {
-    try {
-      const response = await fetch(`http://localhost:5001/api/stocks/${ticker}`);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      return data.data;
-    } catch (error) {
-      console.error("Error fetching stock data:", error);
-      throw error;
-    }
-  };
-  
+  try {
+    const response = await fetch(API_URL);
+    const result = await response.json();
+    return result.data;
+  } catch (error) {
+    console.error('Error fetching all stock data:', error);
+    return [];
+  }
+};
+
+export const fetchStockData = async (ticker) => {
+  try {
+    const response = await fetch(`${API_URL}/${ticker}`);
+    const result = await response.json();
+    return result.data;
+  } catch (error) {
+    console.error('Error fetching stock data:', error);
+    return [];
+  }
+};

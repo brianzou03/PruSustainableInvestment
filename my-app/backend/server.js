@@ -32,8 +32,8 @@ app.get('/api/stocks', (req, res) => {
 
 // API endpoint to fetch stock data by ticker
 app.get('/api/stocks/:ticker', (req, res) => {
-  const ticker = req.params.ticker.toUpperCase();
-  db.all('SELECT * FROM stocks WHERE UPPER(ticker) = ?', [ticker], (err, rows) => {
+  const ticker = req.params.ticker;
+  db.all('SELECT * FROM stocks WHERE ticker = ?', [ticker], (err, rows) => {
     if (err) {
       res.status(500).json({ error: err.message });
       return;

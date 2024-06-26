@@ -6,6 +6,16 @@ body {
   box-sizing: border-box;
 }
 
+#root, .app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
 /* Navbar Styles */
 .navbar {
   display: flex;
@@ -47,9 +57,13 @@ footer {
   color: white;
   text-align: center;
   padding: 1rem 0;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+  width: 100%; /* Ensure the footer spans the full width */
+}
+
+.footer-logo {
+  width: 200px; /* Adjusted width to double the original size */
+  height: auto;
+  margin-bottom: 1rem; /* Add some space below the logo */
 }
 
 footer ul {
@@ -73,26 +87,95 @@ footer a:hover {
   text-decoration: underline;
 }
 
+.contact-info {
+  margin: 1rem 0;
+}
+
+.contact-button {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.contact-button:hover {
+  background-color: lightgray;
+}
+
+.footer-bottom {
+  margin-top: 1rem;
+  border-top: 1px solid #ddd;
+  padding-top: 1rem;
+}
+
 /* Home Page Styles */
 .home {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem;
+  flex-direction: column;
 }
 
-.home-left {
-  flex: 1;
+.home-top {
+  display: flex;
+  height: 50vh; /* Adjust the height as needed */
+}
+
+.home-left, .home-right {
+  flex: 1; /* Each takes up 50% of the width */
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+}
+
+.home-left img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover; /* Ensure the image covers the area */
 }
 
 .home-right {
-  flex: 2;
-  padding-left: 2rem;
+  padding: 2rem;
+  background-color: #f9f9f9;
 }
 
 .home-right p {
-  font-size: 1.2rem;
-  line-height: 1.5;
+  font-size: 1.5rem; /* Increase the font size */
+  line-height: 2; /* Adjust line height for readability */
+  color: #333;
+}
+
+.home-bottom {
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+.home-bottom h2,
+.home-bottom h3,
+.home-bottom h4,
+.home-bottom p {
+  margin: 0.5rem 0;
+}
+
+.home-bottom h2 {
+  color: #304a78;
+  margin-bottom: 1rem; /* Add spacing below */
+}
+
+.home-bottom .section-title {
+  color: #304a78;
+  font-weight: bold; /* Bold text */
+  margin-top: 2rem; /* Add spacing above */
+}
+
+.home-bottom .section-subtitle {
+  color: #304a78;
+}
+
+.home-bottom .section-content {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  margin-top: 1rem; /* Add spacing above */
 }
 
 /* Serv Page Styles */

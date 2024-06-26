@@ -1,0 +1,58 @@
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    display: block; /* Ensure the footer is a block element */
+    width: 100%; /* Ensure the footer spans the full width */
+  }
+  
+  .footer-logo {
+    width: 200px; /* Adjusted width to double the original size */
+    height: auto;
+    margin-bottom: 1rem; /* Add some space below the logo */
+  }
+  
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .footer-links li {
+    margin: 0 1rem;
+  }
+  
+  .footer-links a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+  
+  .contact-info {
+    margin: 1rem 0;
+  }
+  
+  .contact-button {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  
+  .contact-button:hover {
+    background-color: lightgray;
+  }
+  
+  .footer-bottom {
+    margin-top: 1rem;
+    border-top: 1px solid #ddd;
+    padding-top: 1rem;
+  }
+  
