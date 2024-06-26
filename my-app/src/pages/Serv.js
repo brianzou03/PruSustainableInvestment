@@ -8,6 +8,7 @@ const Serv = () => {
   const [highlightedTicker, setHighlightedTicker] = useState('');
   const [selectedStock, setSelectedStock] = useState(null);
   const [alternativeStocks, setAlternativeStocks] = useState([]);
+  const [selectedIndustry, setSelectedIndustry] = useState('All');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,15 +54,33 @@ const Serv = () => {
     }
   };
 
+  const handleIndustryChange = (e) => {
+    setSelectedIndustry(e.target.value);
+  };
+
+  const filteredStockData = selectedIndustry === 'All' 
+    ? stockData 
+    : stockData.filter(stock => stock.industry === selectedIndustry);
+
+  const industries = [...new Set(stockData.map(stock => stock.industry))];
+
   return (
     <div className="serv">
-      <input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Enter stock ticker"
-      />
-      <button onClick={handleSearch}>Search</button>
+      <div className="search-container">
+      <select onChange={handleIndustryChange} value={selectedIndustry}>
+          <option value="All">All Industries</option>
+          {industries.map((industry, index) => (
+            <option key={index} value={industry}>{industry}</option>
+          ))}
+        </select>
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Enter stock ticker"
+        />
+        <button onClick={handleSearch}>Search</button> 
+      </div>
       <div className="serv-content">
         <div className="table-container">
           <table>
@@ -75,7 +94,7 @@ const Serv = () => {
               </tr>
             </thead>
             <tbody>
-              {stockData.map((stock, index) => (
+              {filteredStockData.map((stock, index) => (
                 <tr
                   key={index}
                   className={stock.ticker === highlightedTicker ? 'highlighted' : ''}

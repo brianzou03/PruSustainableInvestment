@@ -17,6 +17,8 @@ npm install express sqlite3 cors
 #### 1st run the backend (in console 1)
 ```
 cd backend
+rm -rf node_modules
+npm install
 node server.js
 ```
 

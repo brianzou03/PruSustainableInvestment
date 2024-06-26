@@ -1,72 +1,77 @@
 .serv {
-    padding: 2rem;
-  }
-  
-  .serv input[type="text"] {
-    padding: 0.5rem;
-    font-size: 1rem;
-    margin-right: 0.5rem;
-  }
-  
-  .serv button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    background-color: #304a78;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .serv button:hover {
-    background-color: #253c65;
-  }
-  
-  .serv-content {
-    display: flex;
-  }
-  
-  .table-container {
-    flex: 1;
-    max-height: 500px; /* Set a fixed height */
-    overflow-y: auto; /* Add scroll if the table is too tall */
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 2rem;
-  }
-  
-  table, th, td {
-    border: 1px solid #ddd;
-  }
-  
-  th, td {
-    padding: 1rem;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f4f4f4;
-  }
-  
-  .highlighted {
-    background-color: lightblue;
-  }
-  
-  .stock-details {
-    flex: 1;
-    padding: 2rem;
-    margin-left: 2rem;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-  }
-  
-  .stock-details h2 {
-    margin-top: 0;
-  }
-  
-  .placeholder-graph {
-    margin-bottom: 1rem;
-  }
-  
+  padding: 2rem;
+}
+
+.serv input[type="text"] {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+.serv button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #304a78;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.serv button:hover {
+  background-color: #253c65;
+}
+
+.serv-content {
+  display: flex;
+}
+
+.table-container {
+  flex: 1;
+  max-height: 500px; /* Set a fixed height */
+  overflow-y: auto; /* Add scroll if the table is too tall */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+.highlighted {
+  background-color: lightblue;
+}
+
+.stock-details {
+  flex: 1;
+  padding: 2rem;
+  margin-left: 2rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+}
+
+.stock-details h2 {
+  margin-top: 0;
+}
+
+.placeholder-graph {
+  margin-bottom: 1rem;
+}
+
+.serv select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
