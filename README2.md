@@ -39,6 +39,7 @@ npm start
 Creating the database:
 ```
 sqlite3 stockData.db
+.open stockData.db
 
 CREATE TABLE stocks (
     id INTEGER PRIMARY KEY,
@@ -51,9 +52,10 @@ CREATE TABLE stocks (
 );
 
 INSERT INTO stocks (name, ticker, industry, price, trend, ratings) VALUES 
-('Prudential', 'PRU', 'finance', 119, 'positive', NULL),
-('Simon Property Group', 'SPG', 'real estate', 147, 'negative', NULL),
-('Apple', 'AAPL', 'tech', 213, 'negative', NULL);
+('Prudential', 'PRU', 'finance', 119, 'positive', 0.002),
+('Simon Property Group', 'SPG', 'real estate', 147, 'negative', 3),
+('Apple', 'AAPL', 'tech', 213, 'negative', 4),
+('Walmart', 'WMT', 'retail', 68.41, 'positive', 3.67);
 
 SELECT * FROM stocks;
 
