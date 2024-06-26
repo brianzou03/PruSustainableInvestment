@@ -10,7 +10,11 @@ const Home = () => {
         </div>
         <div className="home-right">
           <p>
-            Sustainable environmental resource valuation. We aim to create a sustainable future through eco-friendly investments by divesting from environmentally unsustainable companies and suggesting alternative companies to invest in, based on an algorithm that takes into account the stock prices, trends, and sustainability rating.
+            We are Team PRUfessionals, presenting project <b>Sustainable Environmental Resource Valuation (SERV)</b>
+            . We aim to create a sustainable future through eco-friendly investments by 
+            divesting from environmentally unsustainable companies and suggesting alternative 
+            companies to invest in, based on an algorithm that takes into account the stock prices, 
+            carbon emissions, and sustainability rating.
           </p>
         </div>
       </div>
