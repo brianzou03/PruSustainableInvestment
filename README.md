@@ -1,28 +1,26 @@
 # PruSustainableInvestment
-Hackathon project focusing on tracking investments in order to suggest more environmentally friendly alternatives, and to align with a more sustainable company goal.
+Prudential's 2024 Intern Hackathon - Team PRUfessionals
+
+## PruSERV (Sustainable Environmental Resource Valuation)
+Our platform aims to track the environmental impact of corporate investments, analyze and visualize the sustainability of investments, then offer more sustainable alternative investments. 
+
+## Project Details
 
 ### Installations
 ```
-npm install react-router-dom
-npm install sqlite3
-npm install chart.js
-
-cd backend
-npm init -y
-npm install express sqlite3 cors
+npm install
 ```
 
 ### How to run
 
-#### 1st run the backend (in console 1)
+#### 1. Run the backend (in console 1)
 ```
+cd my-app
 cd backend
-rm -rf node_modules
-npm install
 node server.js
 ```
 
-#### 2nd run the frontend (in console 2)
+#### 2. Run the frontend (in console 2)
 ```
 cd my-app
 npm start
@@ -38,7 +36,7 @@ npm start
 * SQLite3 DB
 * Amazon AWS hosting
 
-Creating the database:
+### Creating the database:
 ```
 sqlite3 stockData.db
 
@@ -63,3 +61,22 @@ SELECT * FROM stocks;
 .exit
 
 ```
+
+### How our DB was assembled
+We used Python scripting to scrape stock values, then established ratings based on a calculations of the (total emissions / market cap) of each company. This results in an accurate metric of carbon emissions where lower values mean less carbon footprint and higher values means higher carbon emissions. Ranges between 0-0.7 are deemed "Good CE impact", 0.7-1.0 as "Okay CE impact", and 1.0+ as "Bad CE impact".
+
+
+### Future Expansion
+In the future we hope to achieve the following:
+1. Use Prudential's data to display Prudential's investments in the SERV table
+2. Upgrade the search model to include LLM, using the model to generate explanations for company ratings
+3. Deploy a Prudential rendition of site with CI/CD pipelines for testing and deployment
+4. Analyze fluctuations in Prudential's environmental impact through reports and analytics
+
+
+### Hackathon Team
+* Brian Zou (Node/React Fullstack)
+* Guyllian Dela Rosa (Research + Presentation)
+* Matthew Cruz (Database + AWS)
+* Sydney Dizon (Figma + Presentation)
+* Riya Chandran (Figma + Presentation)
