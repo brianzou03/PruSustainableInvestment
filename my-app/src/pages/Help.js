@@ -4,11 +4,28 @@ import './Help.css';
 const Help = () => {
   return (
     <div className="help">
-      <div className="contact-info">
-        <p>Link to contact page</p>
-        <p>To learn how our Sustainability Tracker can help you track your sustainability indicators and reduce emissions, energy, water, and waste across your supply chain, contact our expert team on the Help page.</p>
-        <button className="contact-button">Contact us ➡</button>
-      </div>
+      <h2>Have a question or need more help? Email us!</h2>
+      <form className="help-form">
+        <div className="form-group">
+          <label htmlFor="firstName">First Name*</label>
+          <input type="text" id="firstName" name="firstName" required />
+          <label htmlFor="lastName">Last Name*</label>
+          <input type="text" id="lastName" name="lastName" required />
+        </div>
+        <div className="form-group">
+          <label htmlFor="company">Company*</label>
+          <input type="text" id="company" name="company" required />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email*</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div className="form-group">
+          <label htmlFor="message">Message*</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 };

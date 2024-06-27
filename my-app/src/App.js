@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import Home from './pages/Home';
 import Serv from './pages/Serv';
 import About from './pages/About';
 import Help from './pages/Help';
-import './App.css'; // Import the CSS file
+import Footer from './components/Footer';
+import './App.css';
 
-const App = () => {
+function App() {
   return (
     <Router>
       <div className="App">
@@ -23,6 +23,6 @@ const App = () => {
       </div>
     </Router>
   );
-};
+}
 
 export default App;
