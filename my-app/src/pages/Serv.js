@@ -53,6 +53,10 @@ const Serv = () => {
     }
   };
 
+  const handleClose = () => {
+    setSelectedStock(null);
+  };
+
   const getEcoFriendliness = (rating) => {
     if (rating < 0.7) {
       return 'Good CO2 emission value';
@@ -121,6 +125,7 @@ const Serv = () => {
         </div>
         {selectedStock && (
           <div className="stock-details">
+            <button className="close-button" onClick={handleClose}>X</button>
             <h2>{selectedStock.name} ({selectedStock.ticker})</h2>
             <p><strong>Industry:</strong> {selectedStock.industry}</p>
             <p><strong>Price:</strong> {selectedStock.price}</p>
