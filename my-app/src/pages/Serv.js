@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchAllStockData, fetchStockData } from '../utils/database';
+import StockDetails from './StockDetails'; // Make sure to import the StockDetails component
 import './Serv.css';
 
 const Serv = () => {
@@ -44,6 +45,11 @@ const Serv = () => {
     setAlternativeStocks(altStocks);
   };
 
+  const handleExit = () => {
+    setSelectedStock(null);
+    setHighlightedTicker('');
+  };
+
   const getEcoFriendliness = (rating) => {
     if (rating < 0.7) {
       return 'Good CO2 emission value';
@@ -67,7 +73,7 @@ const Serv = () => {
   return (
     <div className="serv">
       <div className="search-container">
-      <select onChange={handleIndustryChange} value={selectedIndustry}>
+        <select onChange={handleIndustryChange} value={selectedIndustry}>
           <option value="All">All Industries</option>
           {industries.map((industry, index) => (
             <option key={index} value={industry}>{industry}</option>
@@ -111,22 +117,11 @@ const Serv = () => {
           </table>
         </div>
         {selectedStock && (
-          <div className="stock-details">
-            <h2>{selectedStock.name} ({selectedStock.ticker})</h2>
-            <p><strong>Industry:</strong> {selectedStock.industry}</p>
-            <p><strong>Price:</strong> {selectedStock.price}</p>
-            <p><strong>Rating:</strong> {selectedStock.rating}</p>
-            <p><strong>Eco-Friendliness:</strong> {getEcoFriendliness(selectedStock.rating)}</p>
-            <div className="placeholder-graph">[Graph Placeholder]</div>
-            <h3>Alternative Stocks</h3>
-            <ul>
-              {alternativeStocks.map((stock, index) => (
-                <li key={index}>
-                  {stock.name} ({stock.ticker}) - {stock.rating}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <StockDetails
+            stock={selectedStock}
+            alternativeStocks={alternativeStocks}
+            onExit={handleExit}
+          />
         )}
       </div>
     </div>

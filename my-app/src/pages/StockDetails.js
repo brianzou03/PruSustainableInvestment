@@ -1,8 +1,10 @@
 import React from 'react';
+import './Serv.css';
 
-const StockDetails = ({ stock, alternativeStocks }) => {
+const StockDetails = ({ stock, alternativeStocks, onExit }) => {
   return (
     <div className="stock-details">
+      <button className="exit-button" onClick={onExit}>x</button>
       <h2>Stock Details</h2>
       <p><strong>Name:</strong> {stock.name}</p>
       <p><strong>Ticker:</strong> {stock.ticker}</p>

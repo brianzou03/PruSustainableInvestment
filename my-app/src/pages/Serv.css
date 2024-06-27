@@ -75,3 +75,16 @@ th {
   font-size: 1rem;
   margin-right: 0.5rem;
 }
+
+.exit-button {
+  position: absolute;
+  top: 157px;
+  right: 37px;
+  background-color: transparent !important;
+  color: rgb(130, 130, 130) !important;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
