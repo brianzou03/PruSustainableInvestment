@@ -2,13 +2,25 @@
   padding: 2rem;
 }
 
-.serv input[type="text"] {
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.search-container select {
   padding: 0.5rem;
   font-size: 1rem;
   margin-right: 0.5rem;
 }
 
-.serv button {
+.search-container input[type="text"] {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+.search-container button {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   background-color: #304a78;
@@ -17,7 +29,7 @@
   cursor: pointer;
 }
 
-.serv button:hover {
+.search-container button:hover {
   background-color: #253c65;
 }
 

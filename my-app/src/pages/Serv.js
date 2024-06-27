@@ -8,6 +8,17 @@ const Serv = () => {
   const [highlightedTicker, setHighlightedTicker] = useState('');
   const [selectedStock, setSelectedStock] = useState(null);
   const [alternativeStocks, setAlternativeStocks] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [sortedStockData, setSortedStockData] = useState([]);
+
+  const uniqueCategories = [
+    "Retail", "Technology", "Healthcare", "Telecommunications", "Energy",
+    "Automotive", "Financial Services", "Industrial", "Aerospace",
+    "Consumer Goods", "Agriculture", "Food Distribution", "Logistics",
+    "Airlines", "Professional Services", "Real Estate", "Environmental Services",
+    "Entertainment", "Engineering & Construction", "Mining", "Chemicals",
+    "Media", "Rental & Leasing", "Hospitality"
+  ];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,6 +31,17 @@ const Serv = () => {
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (selectedCategory) {
+      const sortedData = stockData
+        .filter(stock => stock.industry === selectedCategory)
+        .sort((a, b) => a.rating - b.rating);
+      setSortedStockData(sortedData);
+    } else {
+      setSortedStockData(stockData);
+    }
+  }, [selectedCategory, stockData]);
 
   const handleSearch = async () => {
     try {
@@ -81,13 +103,26 @@ const Serv = () => {
 
   return (
     <div className="serv">
-      <input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Enter stock ticker"
-      />
-      <button onClick={handleSearch}>Search</button>
+      <div className="search-container">
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          <option value="">Select Category</option>
+          {uniqueCategories.map((category, index) => (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Enter stock ticker"
+        />
+        <button onClick={handleSearch}>Search</button>
+      </div>
       <div className="serv-content">
         <div className="table-container">
           <table>
@@ -101,8 +136,8 @@ const Serv = () => {
               </tr>
             </thead>
             <tbody>
-              {stockData.length > 0 ? (
-                stockData.map((stock, index) => (
+              {sortedStockData.length > 0 ? (
+                sortedStockData.map((stock, index) => (
                   <tr
                     key={index}
                     className={stock.ticker === highlightedTicker ? 'highlighted' : ''}
