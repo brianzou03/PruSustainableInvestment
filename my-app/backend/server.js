@@ -7,10 +7,7 @@ const port = 5001;
 
 app.use(cors());
 
-// Define the path to the database
 const dbPath = path.resolve(__dirname, '../stockData.db');
-
-// Create a connection to the database
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
     console.error('Could not connect to database', err);
@@ -32,13 +29,17 @@ app.get('/api/stocks', (req, res) => {
 
 // API endpoint to fetch stock data by ticker
 app.get('/api/stocks/:ticker', (req, res) => {
-  const ticker = req.params.ticker;
-  db.all('SELECT * FROM stocks WHERE ticker = ?', [ticker], (err, rows) => {
+  const ticker = req.params.ticker.toUpperCase();
+  db.get('SELECT * FROM stocks WHERE ticker = ?', [ticker], (err, row) => {
     if (err) {
       res.status(500).json({ error: err.message });
       return;
     }
-    res.json({ data: rows });
+    if (row) {
+      res.json({ data: row });
+    } else {
+      res.status(404).json({ error: 'Stock not found' });
+    }
   });
 });
 

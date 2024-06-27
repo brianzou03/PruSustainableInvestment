@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { fetchAllStockData, fetchStockData } from '../utils/database';
-import StockDetails from './StockDetails'; // Make sure to import the StockDetails component
 import './Serv.css';
 
 const Serv = () => {
@@ -9,12 +8,15 @@ const Serv = () => {
   const [highlightedTicker, setHighlightedTicker] = useState('');
   const [selectedStock, setSelectedStock] = useState(null);
   const [alternativeStocks, setAlternativeStocks] = useState([]);
-  const [selectedIndustry, setSelectedIndustry] = useState('All');
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchAllStockData();
-      setStockData(data);
+      if (data && data.data) {
+        setStockData(data.data);
+      } else {
+        setStockData([]);
+      }
     };
     fetchData();
   }, []);
@@ -22,14 +24,14 @@ const Serv = () => {
   const handleSearch = async () => {
     try {
       const data = await fetchStockData(query.toUpperCase());
-      if (data.length === 0) {
+      if (data && data.data) {
+        setHighlightedTicker(query.toUpperCase());
+        setSelectedStock(data.data);
+        const altStocks = getAlternativeStocks(data.data);
+        setAlternativeStocks(altStocks);
+      } else {
         setHighlightedTicker('');
         setSelectedStock(null);
-      } else {
-        setHighlightedTicker(query.toUpperCase());
-        setSelectedStock(data[0]);
-        const altStocks = stockData.filter(stock => stock.ticker !== data[0].ticker).slice(0, 3);
-        setAlternativeStocks(altStocks);
       }
     } catch (err) {
       console.error('Error fetching stock data:', err);
@@ -38,16 +40,17 @@ const Serv = () => {
     }
   };
 
-  const handleRowClick = (stock) => {
-    setSelectedStock(stock);
-    setHighlightedTicker(stock.ticker);
-    const altStocks = stockData.filter(s => s.ticker !== stock.ticker).slice(0, 3);
-    setAlternativeStocks(altStocks);
-  };
-
-  const handleExit = () => {
-    setSelectedStock(null);
-    setHighlightedTicker('');
+  const handleRowClick = async (stock) => {
+    try {
+      const data = await fetchStockData(stock.ticker);
+      if (data && data.data) {
+        setSelectedStock(data.data);
+        const altStocks = getAlternativeStocks(data.data);
+        setAlternativeStocks(altStocks);
+      }
+    } catch (err) {
+      console.error('Error fetching stock data:', err);
+    }
   };
 
   const getEcoFriendliness = (rating) => {
@@ -60,33 +63,27 @@ const Serv = () => {
     }
   };
 
-  const handleIndustryChange = (e) => {
-    setSelectedIndustry(e.target.value);
+  const getAlternativeStocks = (selectedStock) => {
+    if (!selectedStock || !stockData || stockData.length === 0) return [];
+    return stockData
+      .filter(
+        (stock) =>
+          stock.industry === selectedStock.industry &&
+          stock.ticker !== selectedStock.ticker
+      )
+      .sort((a, b) => a.rating - b.rating)
+      .slice(0, 3);
   };
-
-  const filteredStockData = selectedIndustry === 'All' 
-    ? stockData 
-    : stockData.filter(stock => stock.industry === selectedIndustry);
-
-  const industries = [...new Set(stockData.map(stock => stock.industry))];
 
   return (
     <div className="serv">
-      <div className="search-container">
-        <select onChange={handleIndustryChange} value={selectedIndustry}>
-          <option value="All">All Industries</option>
-          {industries.map((industry, index) => (
-            <option key={index} value={industry}>{industry}</option>
-          ))}
-        </select>
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Enter stock ticker"
-        />
-        <button onClick={handleSearch}>Search</button> 
-      </div>
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Enter stock ticker"
+      />
+      <button onClick={handleSearch}>Search</button>
       <div className="serv-content">
         <div className="table-container">
           <table>
@@ -100,28 +97,44 @@ const Serv = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredStockData.map((stock, index) => (
-                <tr
-                  key={index}
-                  className={stock.ticker === highlightedTicker ? 'highlighted' : ''}
-                  onClick={() => handleRowClick(stock)}
-                >
-                  <td>{stock.name}</td>
-                  <td>{stock.ticker}</td>
-                  <td>{stock.industry}</td>
-                  <td>{stock.price}</td>
-                  <td>{stock.rating}</td>
+              {stockData.length > 0 ? (
+                stockData.map((stock, index) => (
+                  <tr
+                    key={index}
+                    className={stock.ticker === highlightedTicker ? 'highlighted' : ''}
+                    onClick={() => handleRowClick(stock)}
+                  >
+                    <td>{stock.name}</td>
+                    <td>{stock.ticker}</td>
+                    <td>{stock.industry}</td>
+                    <td>{stock.price}</td>
+                    <td>{stock.rating}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5">No stocks available</td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>
         {selectedStock && (
-          <StockDetails
-            stock={selectedStock}
-            alternativeStocks={alternativeStocks}
-            onExit={handleExit}
-          />
+          <div className="stock-details">
+            <h2>{selectedStock.name} ({selectedStock.ticker})</h2>
+            <p><strong>Industry:</strong> {selectedStock.industry}</p>
+            <p><strong>Price:</strong> {selectedStock.price}</p>
+            <p><strong>Rating:</strong> {selectedStock.rating}</p>
+            <p><strong>Eco-Friendliness:</strong> {getEcoFriendliness(selectedStock.rating)}</p>
+            <h3>Alternative Stocks</h3>
+            <ul>
+              {alternativeStocks.map((stock, index) => (
+                <li key={index}>
+                  {stock.name} ({stock.ticker}) - {stock.rating}
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </div>
     </div>
